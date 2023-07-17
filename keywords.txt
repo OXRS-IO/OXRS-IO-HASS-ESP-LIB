@@ -1,0 +1,21 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+OXRS_HASS			KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setConfigSchema   KEYWORD2
+parseConfig    KEYWORD2
+
+isDiscoveryEnabled  KEYWORD2
+getDiscoveryJson  KEYWORD2
+publishDiscoveryJson  KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
