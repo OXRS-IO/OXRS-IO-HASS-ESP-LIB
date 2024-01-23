@@ -24,12 +24,12 @@ OXRS_HASS::OXRS_HASS(OXRS_MQTT * mqtt)
 
 void OXRS_HASS::setConfigSchema(JsonVariant json)
 {
-  JsonObject discoveryEnabled = json.createNestedObject("hassDiscoveryEnabled");
+  JsonObject discoveryEnabled = json["hassDiscoveryEnabled"].to<JsonObject>();
   discoveryEnabled["title"] = "Home Assistant Discovery";
   discoveryEnabled["description"] = "Publish Home Assistant discovery config (defaults to 'false`).";
   discoveryEnabled["type"] = "boolean";
 
-  JsonObject discoveryTopicPrefix = json.createNestedObject("hassDiscoveryTopicPrefix");
+  JsonObject discoveryTopicPrefix = json["hassDiscoveryTopicPrefix"].to<JsonObject>();
   discoveryTopicPrefix["title"] = "Home Assistant Discovery Topic Prefix";
   discoveryTopicPrefix["description"] = "Prefix for the Home Assistant discovery topic (defaults to 'homeassistant`).";
   discoveryTopicPrefix["type"] = "string";
@@ -64,7 +64,7 @@ void OXRS_HASS::getDiscoveryJson(JsonVariant json, char * id)
   json["avty_t"] = _hassMqtt->getLwtTopic(topic);
   json["avty_tpl"] = "{% if value_json.online == true %}online{% else %}offline{% endif %}";
 
-  JsonObject dev = json.createNestedObject("dev");
+  JsonObject dev = json["dev"].to<JsonObject>();
   dev["name"] = _hassMqtt->getClientId();
 
 #if defined(FW_MAKER)
@@ -77,7 +77,7 @@ void OXRS_HASS::getDiscoveryJson(JsonVariant json, char * id)
   json["dev"]["sw"] = STRINGIFY(FW_VERSION);
 #endif
 
-  JsonArray ids = dev.createNestedArray("ids");
+  JsonArray ids = dev["ids"].to<JsonArray>();
   ids.add(_hassMqtt->getClientId());
 }
 
