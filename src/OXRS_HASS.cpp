@@ -58,7 +58,7 @@ void OXRS_HASS::getDiscoveryJson(JsonVariant json, char * id)
   char uniqueId[64];
   sprintf_P(uniqueId, PSTR("%s_%s"), _hassMqtt->getClientId(), id);
   json["uniq_id"] = uniqueId;
-  json["obj_id"] = uniqueId;
+  json["def_ent_id"] = uniqueId;
 
   char topic[64];
   json["avty_t"] = _hassMqtt->getLwtTopic(topic);
